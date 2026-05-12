@@ -1,7 +1,8 @@
 import { UsuarioConectadoEvent } from "../events/usuario-conectado-event.js";
 import { NomeUsuario } from "../value-objects/nome-usuario.js";
+import { STATUS_USUARIO, type StatusUsuario } from "../value-objects/status-usuario.js";
 
-export type UsuarioStatus = "online" | "offline";
+export type UsuarioStatus = StatusUsuario;
 
 export type UsuarioProps = {
   id: string;
@@ -28,7 +29,7 @@ export class Usuario {
     return new Usuario({
       id: props.id,
       nome: props.nome,
-      status: "offline",
+      status: STATUS_USUARIO.OFFLINE,
       criadoEm: props.criadoEm ?? new Date(),
     });
   }
@@ -68,11 +69,11 @@ export class Usuario {
   }
 
   public marcarComoOnline(): void {
-    this.props.status = "online";
+    this.props.status = STATUS_USUARIO.ONLINE;
   }
 
   public marcarComoOffline(): void {
-    this.props.status = "offline";
+    this.props.status = STATUS_USUARIO.OFFLINE;
   }
 
   public equals(usuario: Usuario): boolean {
