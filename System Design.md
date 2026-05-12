@@ -12,7 +12,6 @@ Um sistema de chat de mensagens simples que permite comunicação em tempo real 
 - Tempo real: WebSockets
 - Banco de dados: PostgreSQL
 - Cache e presença online: Redis
-- Ambiente local: Docker e Docker Compose
 - Testes: Vitest
 
 ## 2. Modelagem de Domínio
@@ -405,24 +404,8 @@ Como as peças se conectam usando WebSockets e RabbitMQ.
 7. O servidor WebSocket verifica quais usuários da sala estão conectados.
 8. A mensagem é enviada para os clientes conectados em tempo real.
 
-### 3.2. Docker
 
-O projeto deve usar Docker para facilitar o ambiente local e manter dependências externas padronizadas.
-
-**Serviços esperados no Docker Compose:**
-
-- `api`: aplicação Node.js com Express e WebSocket.
-- `postgres`: banco de dados relacional.
-- `redis`: cache e controle de presença online.
-- `rabbitmq`: broker de mensagens para comunicação assíncrona.
-
-**Objetivo:**
-
-- Subir todo o ambiente local com um único comando.
-- Evitar diferenças de configuração entre máquinas.
-- Facilitar testes de integração com banco, cache e mensageria.
-
-### 3.3. Vitest
+### 3.2. Vitest
 
 O projeto deve usar Vitest para testes automatizados.
 
