@@ -1,17 +1,9 @@
-import express from "express";
+import { createInMemoryContainer } from "./infra/container/create-in-memory-container.js";
+import { createHttpApp } from "./interface/http/http-app.js";
 
-const app = express();
+const container = createInMemoryContainer();
+const app = createHttpApp(container.useCases);
 const port = Number(process.env.PORT ?? 3333);
-
-app.use(express.json());
-
-app.get("/healthcheck", (_request, response) => {
-  return response.status(200).json({
-    status: "ok",
-    uptime: process.uptime(),
-    timestamp: new Date().toISOString(),
-  });
-});
 
 app.listen(port, () => {
   console.log(`HTTP server running on port ${port}`);
